@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import ClansPage from "./components/pages/clansPage";
+import PlayersPage from "./components/pages/playersPage";
 
 function App() {
   return (
     <>
-      <ClansPage />
+      <PlayersPage />
     </>
   );
 }
