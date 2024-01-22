@@ -1,11 +1,21 @@
 import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ClansPage from "./components/pages/clansPage";
 import PlayersPage from "./components/pages/playersPage";
+import TopClans from "./components/pages/topClans";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <PlayersPage />
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<ClansPage />} />
+          <Route path="/clan" element={<ClansPage />} />
+          <Route path="/player" element={<PlayersPage />} />
+          <Route path="/topclans" element={<TopClans />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
