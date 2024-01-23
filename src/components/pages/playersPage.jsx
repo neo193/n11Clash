@@ -8,13 +8,13 @@ const PlayersPage = () => {
   return (
     <>
       <NavBar page="player" />
-      <div className="flex justify-center my-8 flex-grow">
+      <div className="flex items-center justify-center mt-8 flex-grow">
         <div className="mx-auto">
-          <SearchBar displayPage="player" />
+          <SearchBar displayPage="player" isTopPage={false} />
         </div>
       </div>
-      <div className="flex justify-center my-8 flex-grow">
-        <div className="flex justify-center w-full mx-auto">
+      <div className="flex justify-center mb-8 flex-grow">
+        <div className="mx-auto">
           <PlayerDisplay />
         </div>
       </div>

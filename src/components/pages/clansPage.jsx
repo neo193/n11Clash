@@ -8,12 +8,12 @@ const ClansPage = () => {
   return (
     <>
       <NavBar page="clan" />
-      <div className="flex justify-center my-8 flex-grow">
+      <div className="flex items-center justify-center mt-8 flex-grow">
         <div className="mx-auto">
-          <SearchBar displayPage="clan" />
+          <SearchBar displayPage="clan" isTopPage={false} />
         </div>
       </div>
-      <div className="flex justify-center my-8 flex-grow">
+      <div className="flex justify-center mb-8 flex-grow">
         <div className="mx-auto">
           <ClanDisplay />
         </div>

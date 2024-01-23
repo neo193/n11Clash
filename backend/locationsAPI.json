@@ -1,35 +1,5 @@
 [
   {
-    "id": 32000000,
-    "name": "Europe",
-    "isCountry": false
-  },
-  {
-    "id": 32000001,
-    "name": "North America",
-    "isCountry": false
-  },
-  {
-    "id": 32000002,
-    "name": "South America",
-    "isCountry": false
-  },
-  {
-    "id": 32000003,
-    "name": "Asia",
-    "isCountry": false
-  },
-  {
-    "id": 32000004,
-    "name": "Australia",
-    "isCountry": false
-  },
-  {
-    "id": 32000005,
-    "name": "Africa",
-    "isCountry": false
-  },
-  {
     "id": 32000006,
     "name": "International",
     "isCountry": false
