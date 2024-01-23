@@ -1,8 +1,15 @@
 import React from "react";
 
-const TopClanTable = () => {
+const TopClanTable = ({ topClans }) => {
+  console.log(topClans);
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div
+      className={`${
+        topClans.length === 0
+          ? "hidden relative overflow-x-auto shadow-md sm:rounded-lg"
+          : "relative overflow-x-auto shadow-md sm:rounded-lg"
+      }`}
+    >
       <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -18,120 +25,39 @@ const TopClanTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          {topClans.map((clan, index) => (
+            <tr
+              key={index}
+              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
-              1
-            </th>
-            <td className="px-6 py-4">
-              <div className="flex items-center">
-                <img
-                  className="h-6 w-auto mr-2"
-                  src="https://api-assets.clashofclans.com/badges/200/KBtwIToS85C-c3ROYqXdkB7DkmMY4zUP3BjJ8IDK1Qw.png"
-                  alt="Logo"
-                />
-                <span>FRIENDS FOREVER</span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex items-center">
-                <img className="h-6 w-auto mr-2" src="/trophy.png" alt="Logo" />
-                <span>5002</span>
-              </div>
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              2
-            </th>
-            <td className="px-6 py-4">The Order</td>
-            <td className="px-6 py-4">4658</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              3
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              4
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              5
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              6
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              7
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              8
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              9
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              10
-            </th>
-            <td className="px-6 py-4">High Table</td>
-            <td className="px-6 py-4">4436</td>
-          </tr>
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {clan.rank}
+              </th>
+              <td className="px-6 py-4">
+                <div className="flex items-center">
+                  <img
+                    className="h-6 w-auto mr-2"
+                    src={clan.badge}
+                    alt="Clan Logo"
+                  />
+                  <span>{clan.name}</span>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <div className="flex items-center">
+                  <img
+                    className="h-6 w-auto mr-2"
+                    src="/trophy.png"
+                    alt="Trophy"
+                  />
+                  <span>{clan.clanPoints}</span>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
