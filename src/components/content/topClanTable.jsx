@@ -28,14 +28,19 @@ const TopClanTable = () => {
             <td className="px-6 py-4">
               <div className="flex items-center">
                 <img
-                  className="h-8 w-auto mr-2"
+                  className="h-6 w-auto mr-2"
                   src="https://api-assets.clashofclans.com/badges/200/KBtwIToS85C-c3ROYqXdkB7DkmMY4zUP3BjJ8IDK1Qw.png"
                   alt="Logo"
                 />
                 <span>FRIENDS FOREVER</span>
               </div>
             </td>
-            <td className="px-6 py-4">5002</td>
+            <td className="px-6 py-4">
+              <div className="flex items-center">
+                <img className="h-6 w-auto mr-2" src="/trophy.png" alt="Logo" />
+                <span>5002</span>
+              </div>
+            </td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th

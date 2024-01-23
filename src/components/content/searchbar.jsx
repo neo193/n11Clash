@@ -1,6 +1,8 @@
 import React from "react";
 
 const SearchBar = ({ displayPage }) => {
+  const suggestions = ["Suggestion 1", "ASJHS", "siasaha", "SDHAH"];
+
   return (
     <form className="w-96 my-8">
       <label
@@ -36,6 +38,18 @@ const SearchBar = ({ displayPage }) => {
           }`}
           required
         />
+        <div className="hidden absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-md">
+          <ul>
+            {suggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                className="px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-700 text-gray-400"
+              >
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        </div>
         <button
           type="submit"
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
