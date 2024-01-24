@@ -40,7 +40,7 @@ const TopClans = () => {
       </div>
       <div className="flex justify-center mb-8 flex-grow">
         <div className="mx-auto">
-          <TopClanTable displayContent={displayContent} />
+          <TopClanTable displayContent={displayContent} page={"clan"} />
         </div>
       </div>
       <Footer />

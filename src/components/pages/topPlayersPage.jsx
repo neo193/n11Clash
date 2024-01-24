@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import NavBar from "../content/navbar";
 import LocationSearchBar from "../content/locationSearch";
 import TopClanTable from "../content/topClanTable";

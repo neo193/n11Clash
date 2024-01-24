@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopClanTable = ({ displayContent }) => {
+const TopClanTable = ({ displayContent, page }) => {
   return (
     <div
       className={`${
@@ -16,10 +16,18 @@ const TopClanTable = ({ displayContent }) => {
               Rank
             </th>
             <th scope="col" className="px-6 py-3">
-              Clan Name
+              {`${page === "clan" ? "Clan Name" : "Player Name"}`}
             </th>
             <th scope="col" className="px-6 py-3">
               Trophies
+            </th>
+            <th
+              scope="col"
+              className={`${
+                page === "clan" ? "hidden px-6 py-3" : "px-6 py-3"
+              }`}
+            >
+              Clan Name
             </th>
           </tr>
         </thead>
@@ -52,7 +60,18 @@ const TopClanTable = ({ displayContent }) => {
                     src="/trophy.png"
                     alt="Trophy"
                   />
-                  <span>{item.clanPoints}</span>
+                  <span>
+                    {page === "clan" ? item.clanPoints : item.trophies}
+                  </span>
+                </div>
+              </td>
+              <td
+                className={`${
+                  page === "clan" ? " hidden px-6 py-4" : "px-6 py-4"
+                }`}
+              >
+                <div className="flex items-center">
+                  <span>{item.clan}</span>
                 </div>
               </td>
             </tr>

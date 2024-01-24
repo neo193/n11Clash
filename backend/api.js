@@ -34,6 +34,27 @@ const getTopClans = async (locationID) => {
     }
 };
 
+const getTopPlayers = async (locationID) => {
+    try {
+        const response = await axiosInstance.get(`/locations/${locationID}/rankings/players?limit=10`);
+        const { items } = response.data;
+
+        const topPlayers = items.map(item => ({
+            rank: item.rank,
+            name: item.name,
+            badge: item.league.iconUrls.medium,
+            trophies: item.trophies,
+            clan: item.clan.name,
+        }));
+
+        return topPlayers;
+    } catch (error) {
+        console.error("Error fetching top players:", error);
+        throw error;
+    }
+}
+
 module.exports = {
     getTopClans,
+    getTopPlayers
 };
