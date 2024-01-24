@@ -1,11 +1,10 @@
 import React from "react";
 
-const TopClanTable = ({ topClans }) => {
-  console.log(topClans);
+const TopClanTable = ({ displayContent }) => {
   return (
     <div
       className={`${
-        topClans.length === 0
+        displayContent.length === 0
           ? "hidden relative overflow-x-auto shadow-md sm:rounded-lg"
           : "relative overflow-x-auto shadow-md sm:rounded-lg"
       }`}
@@ -25,7 +24,7 @@ const TopClanTable = ({ topClans }) => {
           </tr>
         </thead>
         <tbody>
-          {topClans.map((clan, index) => (
+          {displayContent.map((item, index) => (
             <tr
               key={index}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -34,16 +33,16 @@ const TopClanTable = ({ topClans }) => {
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {clan.rank}
+                {item.rank}
               </th>
               <td className="px-6 py-4">
                 <div className="flex items-center">
                   <img
                     className="h-6 w-auto mr-2"
-                    src={clan.badge}
+                    src={item.badge}
                     alt="Clan Logo"
                   />
-                  <span>{clan.name}</span>
+                  <span>{item.name}</span>
                 </div>
               </td>
               <td className="px-6 py-4">
@@ -53,7 +52,7 @@ const TopClanTable = ({ topClans }) => {
                     src="/trophy.png"
                     alt="Trophy"
                   />
-                  <span>{clan.clanPoints}</span>
+                  <span>{item.clanPoints}</span>
                 </div>
               </td>
             </tr>

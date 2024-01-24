@@ -10,7 +10,7 @@ const PlayersPage = () => {
       <NavBar page="player" />
       <div className="flex items-center justify-center mt-8 flex-grow">
         <div className="mx-auto">
-          <SearchBar displayPage="player" isTopPage={false} />
+          <SearchBar displayPage="player" />
         </div>
       </div>
       <div className="flex justify-center mb-8 flex-grow">

@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from "react";
-import locationsData from "../../../backend/locationsAPI.json";
+import React from "react";
 
-const SearchBar = ({ displayPage, isTopPage, setLocation, searchValue }) => {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    setValue(searchValue);
-  }, [searchValue]);
-
-  const searchChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  const getLocationbyID = (locationName) => {
-    const locationID = locationsData.find((loc) => loc.name === locationName);
-
-    locationID ? setLocation(locationName, locationID) : null;
-  };
-
+const SearchBar = ({ displayPage }) => {
   return (
     <form className="w-96 my-8">
       <label
@@ -46,49 +29,15 @@ const SearchBar = ({ displayPage, isTopPage, setLocation, searchValue }) => {
         </div>
         <input
           type="search"
-          onChange={searchChange}
           id="default-search"
-          value={`${searchValue === "" ? value : searchValue}`}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={`${
             displayPage === "clan" ? "Enter Clantag..." : "Enter Playertag..."
           }`}
           required
         />
-        <div
-          className={` ${
-            isTopPage === true
-              ? "absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-md"
-              : "hidden absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-md"
-          }`}
-        >
-          <ul>
-            {locationsData
-              .filter((item) => {
-                const searchTerm = value.toLowerCase();
-                const locName = item.name.toLowerCase();
-
-                return (
-                  searchTerm &&
-                  locName.startsWith(searchTerm) &&
-                  locName !== searchTerm
-                );
-              })
-              .slice(0, 5)
-              .map((location, index) => (
-                <li
-                  key={index}
-                  onClick={() => setLocation(location.name, location.id)}
-                  className="px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-700 text-gray-400"
-                >
-                  {location.name}
-                </li>
-              ))}
-          </ul>
-        </div>
         <button
           type="submit"
-          onClick={() => getLocationbyID(value)}
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Search

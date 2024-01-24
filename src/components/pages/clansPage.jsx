@@ -10,7 +10,7 @@ const ClansPage = () => {
       <NavBar page="clan" />
       <div className="flex items-center justify-center mt-8 flex-grow">
         <div className="mx-auto">
-          <SearchBar displayPage="clan" isTopPage={false} />
+          <SearchBar displayPage="clan" />
         </div>
       </div>
       <div className="flex justify-center mb-8 flex-grow">

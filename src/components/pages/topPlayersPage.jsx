@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import NavBar from "../content/navbar";
-import Footer from "../content/footer";
-import TopClanTable from "../content/topClanTable";
 import LocationSearchBar from "../content/locationSearch";
+import TopClanTable from "../content/topClanTable";
+import Footer from "../content/footer";
 
-const TopClans = () => {
+const TopPlayers = () => {
   const [displayContent, setdisplayContent] = useState([]);
   const [value, setValue] = useState("");
 
@@ -17,22 +16,23 @@ const TopClans = () => {
     setValue(locationName);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/clans?locationID=${locationID}`
+        `http://localhost:3000/api/players?locationID=${locationID}`
       );
       setdisplayContent(response.data);
-      console.log("Top Clans Data:", response.data);
+      console.log("Top Players Data:", response.data);
     } catch (error) {
-      console.error("Error fetching top clans:", error);
+      console.error("Error fetching top players:", error);
     }
   };
+
   return (
     <>
-      <NavBar page="topclans" />
+      <NavBar page="topplayers" />
       <div className="flex flex-grow justify-center items-center mt-8">
         <div className="mx-auto">
           <LocationSearchBar
             key={value}
-            displayPage={"topclans"}
+            displayPage={"topplayers"}
             setLocation={handleLocationSelect}
             searchValue={value}
           />
@@ -48,4 +48,4 @@ const TopClans = () => {
   );
 };
 
-export default TopClans;
+export default TopPlayers;
