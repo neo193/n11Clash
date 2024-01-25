@@ -13,12 +13,17 @@ const axiosInstance = axios.create({
     },
 });
 
-const getTopClans = async (locationID) => {
-    console.log(locationID);
+const getTopClans = async (locationID, dir, marker) => {
     try {
-        console.log(`/locations/${locationID}/rankings/clans`)
-        const response = await axiosInstance.get(`/locations/${locationID}/rankings/clans`);
+        let endpoint = `/locations/${locationID}/rankings/clans`
+        if (dir === '') {
+            endpoint += '?limit=10'
+        } else {
+            endpoint += `?limit=10&${dir}=${marker}`
+        }
+        const response = await axiosInstance.get(endpoint);
         const { items } = response.data;
+        const { cursors } = response.data.paging;
 
         const topClans = items.map(item => ({
             rank: item.rank,
@@ -27,17 +32,26 @@ const getTopClans = async (locationID) => {
             clanPoints: item.clanPoints,
         }));
 
-        return topClans.slice(0, 10);
+        const returnArray = [...topClans, cursors]
+
+        return returnArray;
     } catch (error) {
         console.error("Error fetching top clans:", error);
         throw error;
     }
 };
 
-const getTopPlayers = async (locationID) => {
+const getTopPlayers = async (locationID, dir, marker) => {
     try {
-        const response = await axiosInstance.get(`/locations/${locationID}/rankings/players?limit=10`);
+        let endpoint = `/locations/${locationID}/rankings/players`
+        if (dir === '') {
+            endpoint += '?limit=10'
+        } else {
+            endpoint += `?limit=10&${dir}=${marker}`
+        }
+        const response = await axiosInstance.get(endpoint);
         const { items } = response.data;
+        const { cursors } = response.data.paging;
 
         const topPlayers = items.map(item => ({
             rank: item.rank,
@@ -47,7 +61,9 @@ const getTopPlayers = async (locationID) => {
             clan: item.clan.name,
         }));
 
-        return topPlayers;
+        const returnArray = [...topPlayers, cursors]
+
+        return returnArray;
     } catch (error) {
         console.error("Error fetching top players:", error);
         throw error;

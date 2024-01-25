@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopClanTable = ({ displayContent, page }) => {
+const TopClanTable = ({ displayContent, page, markers, changePage }) => {
   return (
     <div
       className={`${
@@ -80,9 +80,10 @@ const TopClanTable = ({ displayContent, page }) => {
       </table>
 
       <div className="flex justify-around my-4">
-        <a
-          href="#"
-          className="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        <button
+          disabled={!markers.before}
+          onClick={() => changePage("before", markers.before)}
+          className="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         >
           <svg
             className="w-3.5 h-3.5 me-2 rtl:rotate-180"
@@ -100,9 +101,10 @@ const TopClanTable = ({ displayContent, page }) => {
             />
           </svg>
           Previous
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
+          disabled={!markers.after}
+          onClick={() => changePage("after", markers.after)}
           className="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         >
           Next
@@ -121,7 +123,7 @@ const TopClanTable = ({ displayContent, page }) => {
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );

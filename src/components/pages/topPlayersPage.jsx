@@ -8,6 +8,8 @@ import Footer from "../content/footer";
 const TopPlayers = () => {
   const [displayContent, setdisplayContent] = useState([]);
   const [value, setValue] = useState("");
+  const [markers, setMarkers] = useState({});
+  const [locationID, setLocationID] = useState(0);
 
   useEffect(() => {
     console.log(value);
@@ -15,10 +17,27 @@ const TopPlayers = () => {
 
   const handleLocationSelect = async (locationName, locationID) => {
     setValue(locationName);
+    setLocationID(locationID);
     try {
       const response = await axios.get(
         `http://localhost:3000/api/players?locationID=${locationID}`
       );
+      setMarkers(response.data[response.data.length - 1]);
+      response.data.pop();
+      setdisplayContent(response.data);
+      console.log("Top Players Data:", response.data);
+    } catch (error) {
+      console.error("Error fetching top players:", error);
+    }
+  };
+
+  const handlePaging = async (dir, marker) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/players?locationID=${locationID}&direction=${dir}&marker=${marker}`
+      );
+      setMarkers(response.data[response.data.length - 1]);
+      response.data.pop();
       setdisplayContent(response.data);
       console.log("Top Players Data:", response.data);
     } catch (error) {
@@ -41,7 +60,13 @@ const TopPlayers = () => {
       </div>
       <div className="flex justify-center mb-8 flex-grow">
         <div className="mx-auto">
-          <TopClanTable displayContent={displayContent} />
+          <TopClanTable
+            key={markers}
+            displayContent={displayContent}
+            page={"player"}
+            markers={markers}
+            changePage={handlePaging}
+          />
         </div>
       </div>
       <Footer />

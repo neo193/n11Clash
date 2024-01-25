@@ -11,8 +11,14 @@ app.use(express.json());
 // API endpoint to fetch top clans
 app.get('/api/clans', async (req, res) => {
     const locationID = req.query.locationID;
+    let dir = ''
+    let marker = ''
+    if (req.query.direction) {
+        dir = req.query.direction;
+        marker = req.query.marker;
+    }
     try {
-        const clans = await api.getTopClans(locationID);
+        const clans = await api.getTopClans(locationID, dir, marker);
         res.json(clans);
         console.log("SERVER PAGE: ", clans);
     } catch (error) {
@@ -23,8 +29,14 @@ app.get('/api/clans', async (req, res) => {
 
 app.get('/api/players', async (req, res) => {
     const locationID = req.query.locationID;
+    let dir = ''
+    let marker = ''
+    if (req.query.direction) {
+        dir = req.query.direction;
+        marker = req.query.marker;
+    }
     try {
-        const players = await api.getTopPlayers(locationID);
+        const players = await api.getTopPlayers(locationID, dir, marker);
         res.json(players);
         console.log("SERVER PAGE: ", players);
     } catch (error) {

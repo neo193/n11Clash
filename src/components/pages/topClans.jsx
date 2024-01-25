@@ -8,6 +8,8 @@ import LocationSearchBar from "../content/locationSearch";
 const TopClans = () => {
   const [displayContent, setdisplayContent] = useState([]);
   const [value, setValue] = useState("");
+  const [markers, setMarkers] = useState({});
+  const [locationID, setLocationID] = useState(0);
 
   useEffect(() => {
     console.log(value);
@@ -15,16 +17,34 @@ const TopClans = () => {
 
   const handleLocationSelect = async (locationName, locationID) => {
     setValue(locationName);
+    setLocationID(locationID);
     try {
       const response = await axios.get(
         `http://localhost:3000/api/clans?locationID=${locationID}`
       );
+      setMarkers(response.data[response.data.length - 1]);
+      response.data.pop();
       setdisplayContent(response.data);
       console.log("Top Clans Data:", response.data);
     } catch (error) {
       console.error("Error fetching top clans:", error);
     }
   };
+
+  const handlePaging = async (dir, marker) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/clans?locationID=${locationID}&direction=${dir}&marker=${marker}`
+      );
+      setMarkers(response.data[response.data.length - 1]);
+      response.data.pop();
+      setdisplayContent(response.data);
+      console.log("Top Clans Data:", response.data);
+    } catch (error) {
+      console.error("Error fetching top clans:", error);
+    }
+  };
+
   return (
     <>
       <NavBar page="topclans" />
@@ -40,7 +60,13 @@ const TopClans = () => {
       </div>
       <div className="flex justify-center mb-8 flex-grow">
         <div className="mx-auto">
-          <TopClanTable displayContent={displayContent} page={"clan"} />
+          <TopClanTable
+            key={markers}
+            displayContent={displayContent}
+            page={"clan"}
+            markers={markers}
+            changePage={handlePaging}
+          />
         </div>
       </div>
       <Footer />
