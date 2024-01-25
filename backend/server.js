@@ -20,7 +20,7 @@ app.get('/api/clans', async (req, res) => {
     try {
         const clans = await api.getTopClans(locationID, dir, marker);
         res.json(clans);
-        console.log("SERVER PAGE: ", clans);
+        console.log("Top Clans: ", clans);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -38,12 +38,24 @@ app.get('/api/players', async (req, res) => {
     try {
         const players = await api.getTopPlayers(locationID, dir, marker);
         res.json(players);
-        console.log("SERVER PAGE: ", players);
+        console.log("Top Players: ", players);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+app.get('/api/clan', async (req, res) => {
+    const clantag = req.query.clantag;
+    try {
+        const claninfo = await api.getClanInfo(clantag);
+        res.json(claninfo);
+        console.log('Clan Info', claninfo)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

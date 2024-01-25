@@ -70,7 +70,28 @@ const getTopPlayers = async (locationID, dir, marker) => {
     }
 }
 
+const getClanInfo = async (clantag) => {
+    console.log(`/clans/${clantag}`)
+    try {
+        const response = await axiosInstance.get(`/clans/%23${clantag}`)
+        const items = response.data;
+
+        const clanInfo = {
+            name: items.name,
+            description: items.description,
+            badge: items.badgeUrls.medium,
+            members: items.members,
+        }
+
+        return clanInfo;
+    } catch (error) {
+        console.error("Error fetching top players:", error);
+        throw error;
+    }
+}
+
 module.exports = {
     getTopClans,
-    getTopPlayers
+    getTopPlayers,
+    getClanInfo
 };

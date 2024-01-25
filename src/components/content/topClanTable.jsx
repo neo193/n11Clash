@@ -70,7 +70,7 @@ const TopClanTable = ({ displayContent, page, markers, changePage }) => {
                   page === "clan" ? " hidden px-6 py-4" : "px-6 py-4"
                 }`}
               >
-                <div className="flex items-center">
+                <div className="flex justify-center items-center">
                   <span>{item.clan}</span>
                 </div>
               </td>
