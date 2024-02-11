@@ -27,6 +27,24 @@ app.get('/api/clans', async (req, res) => {
     }
 });
 
+app.get('/api/capitals', async (req, res) => {
+    const locationID = req.query.locationID;
+    let dir = ''
+    let marker = ''
+    if (req.query.direction) {
+        dir = req.query.direction;
+        marker = req.query.marker;
+    }
+    try {
+        const clans = await api.getTopCapitals(locationID, dir, marker);
+        res.json(clans);
+        console.log("Top Capitals: ", clans);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/api/players', async (req, res) => {
     const locationID = req.query.locationID;
     let dir = ''

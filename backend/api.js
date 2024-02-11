@@ -70,6 +70,34 @@ const getTopPlayers = async (locationID, dir, marker) => {
     }
 }
 
+const getTopCapitals = async (locationID, dir, marker) => {
+    try {
+        let endpoint = `/locations/${locationID}/rankings/capitals`
+        if (dir === '') {
+            endpoint += '?limit=10'
+        } else {
+            endpoint += `?limit=10&${dir}=${marker}`
+        }
+        const response = await axiosInstance.get(endpoint);
+        const { items } = response.data;
+        const { cursors } = response.data.paging;
+
+        const topClans = items.map(item => ({
+            rank: item.rank,
+            name: item.name,
+            badge: item.badgeUrls.medium,
+            clanPoints: item.clanCapitalPoints,
+        }));
+
+        const returnArray = [...topClans, cursors]
+
+        return returnArray;
+    } catch (error) {
+        console.error("Error fetching top capitals:", error);
+        throw error;
+    }
+}
+
 const getClanInfo = async (clantag) => {
     console.log(`/clans/${clantag}`)
     try {
@@ -137,5 +165,6 @@ module.exports = {
     getTopClans,
     getTopPlayers,
     getClanInfo,
-    getPlayerInfo
+    getPlayerInfo,
+    getTopCapitals
 };

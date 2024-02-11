@@ -5,6 +5,7 @@ import PlayersPage from "./components/pages/playersPage";
 import TopClans from "./components/pages/topClans";
 import TopPlayers from "./components/pages/topPlayersPage";
 import "./App.css";
+import TopCapitals from "./components/pages/topCapitalsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/player" element={<PlayersPage />} />
           <Route path="/topclans" element={<TopClans />} />
           <Route path="/topplayers" element={<TopPlayers />} />
+          <Route path="/topcapitals" element={<TopCapitals />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -16,7 +16,7 @@ const TopClanTable = ({ displayContent, page, markers, changePage }) => {
               Rank
             </th>
             <th scope="col" className="px-6 py-3">
-              {`${page === "clan" ? "Clan Name" : "Player Name"}`}
+              {`${page === "player" ? "Player Name" : "Clan Name"}`}
             </th>
             <th scope="col" className="px-6 py-3">
               Trophies
@@ -24,7 +24,7 @@ const TopClanTable = ({ displayContent, page, markers, changePage }) => {
             <th
               scope="col"
               className={`${
-                page === "clan" ? "hidden px-6 py-3" : "px-6 py-3"
+                page === "player" ? "px-6 py-3" : "hidden px-6 py-3"
               }`}
             >
               Clan Name
@@ -57,17 +57,19 @@ const TopClanTable = ({ displayContent, page, markers, changePage }) => {
                 <div className="flex items-center">
                   <img
                     className="h-6 w-auto mr-2"
-                    src="/trophy.png"
+                    src={`${
+                      page === "capitals" ? "/ClanPoints.png" : "/trophy.png"
+                    }`}
                     alt="Trophy"
                   />
                   <span>
-                    {page === "clan" ? item.clanPoints : item.trophies}
+                    {page === "player" ? item.trophies : item.clanPoints}
                   </span>
                 </div>
               </td>
               <td
                 className={`${
-                  page === "clan" ? " hidden px-6 py-4" : "px-6 py-4"
+                  page === "player" ? " px-6 py-4" : "hidden px-6 py-4"
                 }`}
               >
                 <div className="flex justify-center items-center">
