@@ -57,6 +57,18 @@ app.get('/api/clan', async (req, res) => {
     }
 })
 
+app.get('/api/player', async (req, res) => {
+    const playertag = req.query.playertag;
+    try {
+        const playerinfo = await api.getPlayerInfo(playertag);
+        res.json(playerinfo);
+        console.log('Player Info', playerinfo)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

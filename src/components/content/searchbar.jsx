@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ displayPage, getClan }) => {
+const SearchBar = ({ displayPage, getInfo }) => {
   const [value, setValue] = useState("");
 
   const onChange = (event) => {
@@ -9,7 +9,7 @@ const SearchBar = ({ displayPage, getClan }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    getClan(value);
+    getInfo(value);
   };
 
   return (

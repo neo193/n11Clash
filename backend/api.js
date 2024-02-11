@@ -90,8 +90,52 @@ const getClanInfo = async (clantag) => {
     }
 }
 
+const getPlayerInfo = async (playertag) => {
+    console.log(`/players/${playertag}`)
+    try {
+        const formatRole = s => {
+            if (s === 'member') {
+                var formattedRole = "Member"
+            } else if (s === 'admin') {
+                formattedRole = "Elder"
+            } else if (s === 'coLeader') {
+                formattedRole = "Co-Leader"
+            } else if (s === 'leader') {
+                formattedRole = "Leader"
+            }
+            return formattedRole
+        }
+
+        const response = await axiosInstance.get(`/players/%23${playertag}`)
+        const items = response.data;
+
+        if (items.role) {
+            var role = formatRole(items.role)
+            var clanName = items.clan.name
+        } else {
+            role = ""
+            clanName = "Not in a Clan"
+        }
+
+        const playerInfo = {
+            name: items.name,
+            tag: items.tag,
+            thLevel: items.townHallLevel,
+            expLevel: items.expLevel,
+            role: role,
+            clanName: clanName
+        }
+
+        return playerInfo;
+    } catch (error) {
+        console.error("Error fetching top players:", error);
+        throw error;
+    }
+}
+
 module.exports = {
     getTopClans,
     getTopPlayers,
-    getClanInfo
+    getClanInfo,
+    getPlayerInfo
 };

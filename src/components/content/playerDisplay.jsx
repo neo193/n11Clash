@@ -1,19 +1,25 @@
 import React from "react";
 
-const PlayerDisplay = () => {
+const PlayerDisplay = ({ playerInfo }) => {
   return (
-    <div className="w-96 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div
+      className={`${
+        Object.keys(playerInfo).length === 0
+          ? "hidden w-96 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          : "w-96 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      }`}
+    >
       <div className="flex flex-col items-center my-8">
         <img
           className="w-24 h-24 mb-3 rounded-full shadow-lg"
-          src="/THImages/TH14.png"
-          alt="Bonnie image"
+          src={`/THImages/TH${playerInfo.thLevel}.png`}
+          alt="Townhall Image"
         />
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-          Neeyoo
+          {playerInfo.name}
         </h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">
-          #2Y8C89CVR
+          {playerInfo.tag}
         </span>
         <span className="inline-flex items-center text-sm text-gray-500 dark:text-gray-400">
           <svg
@@ -28,13 +34,13 @@ const PlayerDisplay = () => {
               clipRule="evenodd"
             />
           </svg>
-          210
+          {playerInfo.expLevel}
         </span>
         <span className="text-md mt-4 text-gray-500 dark:text-gray-400">
-          Member
+          {playerInfo.role}
         </span>
         <span className="text-md mt-1 text-gray-500 dark:text-gray-400">
-          FRIENDS FOREVER
+          {playerInfo.clanName}
         </span>
         <div className="flex w-40 mx-auto mt-4 md:mt-6">
           <a
@@ -47,7 +53,11 @@ const PlayerDisplay = () => {
         <div className="flex w-40 mx-auto mt-4 md:mt-6">
           <a
             href="#"
-            className="inline-flex justify-center w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className={` ${
+              playerInfo.clanName === "Not in a Clan"
+                ? "disabled inline-flex justify-center w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-blue-800"
+                : "inline-flex justify-center w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            }`}
           >
             Clan
           </a>
